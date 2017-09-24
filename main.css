@@ -1,0 +1,18 @@
+body{
+  background-color:#3d3d29 
+}
+#js-displaymap{
+  height: 600px;
+  width: 100%;
+  border: solid 1px #183059;
+}
+
+.imageInfo{
+  float: left;
+  width: 256px;
+  height: 256px;
+}
+
+.jumbotron{
+  text-align: center;
+}
