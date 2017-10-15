@@ -2,29 +2,37 @@ body{
 
   background-color:#eee
 }
-#js-displaymap{
-  float: right;
-  height: 600px;
-  width: 80%;
-  border: solid 4px white;
-}
-
-#js-displResults{
-  width: 20%;
-  height: 600px;
-  overflow: auto;
-  border:4px solid white;
-}
-
-.imageInfo{
-  float: left;
-  width: 256px;
-  height: 256px;
-}
-
 .jumbotron{
   text-align: center;
   margin-bottom: 0px;
   padding-top: 10px;
   padding-bottom: 20px;
 }
+
+#js-displaymap{
+  float: right;
+  height: 550px;
+  width: 80%;
+  border: solid 4px white;
+}
+
+#js-displResults{
+  width: 20%;
+  height: 550px;
+  overflow: auto;
+  border:4px solid white;
+}
+
+.imageInfo{
+  float: left;
+}
+
+.markerInfo{
+  overflow: auto;
+}
+
+span{
+  font-style: bold;
+}
+
+

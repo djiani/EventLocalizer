@@ -107,12 +107,13 @@ function setMaps(data, location){
     let date = new Date(data[i].start_time);
     marker[i].info = new google.maps.InfoWindow({
       content: `
-      <div>
-      <img src= ${imgUrl} class="imageInfo">
-      <h3> <a href="${data[i].url}"> ${data[i].title} </a></h3> 
-      <h5>Date: ${date.toLocaleDateString() } </h5>
-      <h5>Time: ${date.toLocaleTimeString() } </h5>
-      <p>${desc}</p>
+      <div class="markerInfo">
+        <img src= ${imgUrl} class="img-responsive img-thumbnail imageInfo">
+        <h4> <a href="${data[i].url}"> ${data[i].title} </a></h4> 
+        <h6><span>Where:</span>${date.toLocaleDateString() } At: ${date.toLocaleTimeString() }</h6>
+        <h6><span>Where:</span> ${data[i].venue_name}</h6>
+        <h6><span>Address:</span> ${data[i].venue_address} ${data[i].city_name}, ${data[i].region_abbr} ${data[i].postal_code}</h6>
+        <p>${desc}</p>
       </div> `
     });
 
