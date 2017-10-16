@@ -2,6 +2,7 @@
 const ENDPOINT = "/events/search"
 let map = "";
 let marker= [];
+let timerInterval
 function show_alert(term,location)
 {
 
@@ -26,17 +27,21 @@ function show_alert(term,location)
       // Note: this relies on the custom toString() methods below
       var data = oData.events.event;
       console.log(data);
-      displayResults(data)
-       setMaps(data, location);
-
+      if(data.length>0){
+        displayResults(data, term, location);
+      setMaps(data, location);
+      }
+      else{
+        alert("No results found!, Revise your search and resubmit it!")
+      }
       
 
     });
 
 }
 
-function displayResults(data){
-  let html =`<h4>List of Events found:</h4>
+function displayResults(data, searchTerm, location){
+  let html =`<h4>List of ${searchTerm} found near ${location}:</h4>
   <ul>`;
   for(let i=0; i< data.length; i++){
     html += `<li class="js-data" data-id=${i}><a href='#'>${data[i].title}</a></li><br>`
@@ -51,14 +56,15 @@ function initMap() {
     center:{lat: 40.7608, lng: -111.8910},
     zoom:4,
   });
-/*
-  let events =["Concerts", "Festivals", "comedy", "Familly","nightlife", "performance arts", "conferances", "education", "film", "food", "museums", "technology" ];
+
+  let events =["Concerts", "Festivals", "comedy", "Familly", "nightlife", "performance arts", "conferances", "education", "film", "food", "museums", "technology" ];
   let i = 0;
-  setInterval(function(){
+  timerInterval = setInterval(function(){
     i++;
-    let targetElt =document.getElementById('searchEvent');
-    targetElt.text(events[i% events.length]);
-  }, 2000);*/
+    $('#searchEvent').attr("placeholder", events[i% events.length]);
+    console.log('index '+ i% events.length)
+    
+  }, 2000);
 }
 
 
@@ -111,8 +117,8 @@ function setMaps(data, location){
       <div class="markerInfo">
         <img src= ${imgUrl} class="img-responsive img-thumbnail imageInfo">
         <h4> <a href="${data[i].url}"> ${data[i].title} </a></h4> 
-        <h6>Where:${date.toLocaleDateString() } At: ${date.toLocaleTimeString() }</h6>
-        <h6>Where:<a href="${data[i].venue_url}"> ${data[i].venue_name}</a></h6>
+        <h6>When: ${date.toLocaleDateString() } At: ${date.toLocaleTimeString() }</h6>
+        <h6>Where:<a href="${data[i].venue_url}" target="myIframe"  class="js-page_venue" > ${data[i].venue_name}</a></h6>
         <h6>Address: ${data[i].venue_address} ${data[i].city_name}, ${data[i].region_abbr} ${data[i].postal_code}</h6>
         <p>${desc}</p>
       </div> `
@@ -136,9 +142,10 @@ function updateMarker(index){
 
 }
 
-function modalFunct(){
-  var page = "https://www.w3schools.com/bootstrap/bootstrap_ref_js_modal.asp";
-  var $dialog = $('<div></div>')
+function modalFunct(url){
+  console.log(url);
+  let page = "https://www.w3schools.com/bootstrap/bootstrap_ref_js_modal.asp";
+  let dialog = $('#js-displaymap')
                  .html('<iframe style="border: 0px; " src="' + page + '" width="100%" height="100%"></iframe>')
                  .dialog({
                      autoOpen: false,
@@ -148,7 +155,7 @@ function modalFunct(){
                      title: "Some title"
                  });
 
-  $dialog.dialog('open');
+  dialog.dialog('open');
 
 }
 
@@ -156,6 +163,9 @@ function modalFunct(){
 $(function(){
    $("form").submit(function(event){
     event.preventDefault();
+    //clear timer interval
+    clearInterval(timerInterval);
+
     let searchTerm = $("#searchEvent").val();
     let location = $("#location").val();
     console.log(searchTerm+ "  "+location);
@@ -172,14 +182,13 @@ $(function(){
     //alert('passed checked!!');
   })
 
-  $('#js-displResults').on('click', '.js-page_venue', function(event){
-    alert('js-page_venue passed checked!!');
-    //let url = $(event.currentTarget).attr('data-url');
-    //console.log(url);
-    //modalFunct(url);
+  
+  $('#js-displaymap').on('click', '.js-page_venue', function(event){
+   
+    console.log("test passed!!!")
     
   })
-   
+
 });
 
 
