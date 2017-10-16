@@ -96,6 +96,7 @@ function setMaps(data, location){
       desc = data[i].description;
     }
 
+
     marker[i] = new google.maps.Marker({
       position: {lat: parseFloat(data[i].latitude), lng: parseFloat(data[i].longitude)},
       map: map,
@@ -110,9 +111,9 @@ function setMaps(data, location){
       <div class="markerInfo">
         <img src= ${imgUrl} class="img-responsive img-thumbnail imageInfo">
         <h4> <a href="${data[i].url}"> ${data[i].title} </a></h4> 
-        <h6><span>Where:</span>${date.toLocaleDateString() } At: ${date.toLocaleTimeString() }</h6>
-        <h6><span>Where:</span> ${data[i].venue_name}</h6>
-        <h6><span>Address:</span> ${data[i].venue_address} ${data[i].city_name}, ${data[i].region_abbr} ${data[i].postal_code}</h6>
+        <h6>Where:${date.toLocaleDateString() } At: ${date.toLocaleTimeString() }</h6>
+        <h6>Where:<a href="${data[i].venue_url}"> ${data[i].venue_name}</a></h6>
+        <h6>Address: ${data[i].venue_address} ${data[i].city_name}, ${data[i].region_abbr} ${data[i].postal_code}</h6>
         <p>${desc}</p>
       </div> `
     });
@@ -135,6 +136,21 @@ function updateMarker(index){
 
 }
 
+function modalFunct(){
+  var page = "https://www.w3schools.com/bootstrap/bootstrap_ref_js_modal.asp";
+  var $dialog = $('<div></div>')
+                 .html('<iframe style="border: 0px; " src="' + page + '" width="100%" height="100%"></iframe>')
+                 .dialog({
+                     autoOpen: false,
+                     modal: true,
+                     height: 625,
+                     width: 500,
+                     title: "Some title"
+                 });
+
+  $dialog.dialog('open');
+
+}
 
 
 $(function(){
@@ -154,6 +170,14 @@ $(function(){
     let = index = $(event.currentTarget).attr('data-id');
     updateMarker(index);
     //alert('passed checked!!');
+  })
+
+  $('#js-displResults').on('click', '.js-page_venue', function(event){
+    alert('js-page_venue passed checked!!');
+    //let url = $(event.currentTarget).attr('data-url');
+    //console.log(url);
+    //modalFunct(url);
+    
   })
    
 });
