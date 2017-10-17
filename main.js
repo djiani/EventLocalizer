@@ -3,6 +3,7 @@ const ENDPOINT = "/events/search"
 let map = "";
 let marker= [];
 let timerInterval
+
 function show_alert(term,location)
 {
 
@@ -13,8 +14,6 @@ function show_alert(term,location)
       q: term,
 
       where: location, 
-
-      //"date": "2017061000-2018062000",
 
       page_size: 30,
 
@@ -132,6 +131,7 @@ function setMaps(data, location){
   }
 
 }
+
 function updateMarker(index){
   console.log('index '+ index);
   for(let i=0; i < marker.length; i++){
@@ -139,23 +139,6 @@ function updateMarker(index){
   }
   marker[index].setAnimation(google.maps.Animation.BOUNCE);
   marker[index].setMap(map);
-
-}
-
-function modalFunct(url){
-  console.log(url);
-  let page = "https://www.w3schools.com/bootstrap/bootstrap_ref_js_modal.asp";
-  let dialog = $('#js-displaymap')
-                 .html('<iframe style="border: 0px; " src="' + page + '" width="100%" height="100%"></iframe>')
-                 .dialog({
-                     autoOpen: false,
-                     modal: true,
-                     height: 625,
-                     width: 500,
-                     title: "Some title"
-                 });
-
-  dialog.dialog('open');
 
 }
 
@@ -179,14 +162,7 @@ $(function(){
   $('#js-displResults').on('click', '.js-data', function(event){
     let = index = $(event.currentTarget).attr('data-id');
     updateMarker(index);
-    //alert('passed checked!!');
-  })
 
-  
-  $('#js-displaymap').on('click', '.js-page_venue', function(event){
-   
-    console.log("test passed!!!")
-    
   })
 
 });
