@@ -29,7 +29,7 @@ function show_alert(term,location)
       console.log(data);
       if(data.length>0){
         displayResults(data, term, location);
-      setMaps(data, location);
+        setMaps(data, location);
       }
       else{
         alert("No results found!, Revise your search and resubmit it!")
@@ -116,7 +116,7 @@ function setMaps(data, location){
       content: `
       <div class="markerInfo">
         <img src= ${imgUrl} class="img-responsive img-thumbnail imageInfo">
-        <h4> <a href="${data[i].url}"> ${data[i].title} </a></h4> 
+        <h4> <a href="${data[i].url}" target="myIframe" class="js-page_venue"> ${data[i].title} </a></h4> 
         <h6>When: ${date.toLocaleDateString() } At: ${date.toLocaleTimeString() }</h6>
         <h6>Where:<a href="${data[i].venue_url}" target="myIframe"  class="js-page_venue" > ${data[i].venue_name}</a></h6>
         <h6>Address: ${data[i].venue_address} ${data[i].city_name}, ${data[i].region_abbr} ${data[i].postal_code}</h6>

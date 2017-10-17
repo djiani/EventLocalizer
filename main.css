@@ -7,16 +7,21 @@ body{
   margin-bottom: 0px;
   padding-top: 10px;
   padding-bottom: 20px;
+  background-color: #0066cc;
+  
 }
 
 #js-displaymap{
-  float: right;
+  margin-right: auto;
+  margin-left: auto;
   height: 550px;
   width: 80%;
   border: solid 4px white;
 }
 
 #js-displResults{
+  margin-right: auto;
+  margin-left: auto;
   width: 20%;
   height: 550px;
   overflow: auto;
@@ -36,15 +41,40 @@ span{
 }
 
 #js_Iframe{
-  position: relative;
- top:-120px;
- z-index: -1;
+ /*position: relative;
+ top:-100px;
+ z-index: 1
+ */
  
 }
 
+.hidenheader{
+  border:1px solid black;
+  background-color: #0066cc;
+  width: 98.5%;
+  height: 170px;
+  position: relative;
+  z-index: 10;
+  bottom: 702px;
+  left: 0px;
+  margin-top: 0px;
+  padding: 0px;
+  color: white;
+  text-align: center;
+}
 
+@media only screen and (max-width: 700px){
+  #js-displaymap{
+  width: 100%;
+ 
+}
 
+#js-displResults{
+  width: 100%;
+ 
+}
 
+}
 
 
    
