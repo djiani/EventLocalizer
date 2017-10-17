@@ -10,7 +10,7 @@ EventLocalizer is a web-app based on eventful api and google maps api. it helps 
 This web-app is built using Front-end Technology(Html5/CSS/Bootstap/JQuery)
 - The app is fully responsible and suitable adapted for mobile, tablets, desktop viewports.
 
-*[team Members](*team-members)
+<h1>Contributors</h1>
  - Samuel Djiani 
 
 
