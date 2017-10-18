@@ -61,7 +61,7 @@ function initMap() {
   timerInterval = setInterval(function(){
     i++;
     $('#searchEvent').attr("placeholder", events[i% events.length]);
-    console.log('index '+ i% events.length)
+    //console.log('index '+ i% events.length)
   
   }, 2000);
 }
@@ -93,7 +93,7 @@ function setMaps(data, location){
     if(data[i].image && data[i].image.medium){
       if(data[i].image.medium.url){
         imgUrl = (data[i].image.medium.url).replace('http', 'https');
-        console.log(imgUrl);
+        //console.log(imgUrl);
       }
     }
 
