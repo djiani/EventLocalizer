@@ -62,7 +62,7 @@ function initMap() {
     i++;
     $('#searchEvent').attr("placeholder", events[i% events.length]);
     console.log('index '+ i% events.length)
-    
+  
   }, 2000);
 }
 

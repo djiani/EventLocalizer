@@ -8,6 +8,7 @@ body{
   padding-top: 10px;
   padding-bottom: 20px;
   background-color: #0066cc;
+  color: white;
   
 }
 
@@ -26,6 +27,7 @@ body{
   height: 550px;
   overflow: auto;
   border:4px solid white;
+
 }
 
 .imageInfo{
@@ -34,10 +36,9 @@ body{
 
 .markerInfo{
   overflow: auto;
-}
-
-span{
-  font-style: bold;
+  width: 300px
+  height:300px;
+  object-fit:cover;
 }
 
 
@@ -48,26 +49,87 @@ span{
   height: 170px;
   position: relative;
   z-index: 10;
-  bottom: 702px;
-  left: 0px;
+  bottom: 902px;
   margin-top: 0px;
   padding: 0px;
   color: white;
   text-align: center;
 }
-
-@media only screen and (max-width: 700px){
-  #js-displaymap{
-    width: 100%;
- 
-  }
-
-  #js-displResults{
-    width: 100%;
- 
-  }
-
+.handDown1, .handDown2{
+  display: inline-block;
+  position: absolute;
+  color: red;
 }
 
 
+
+.handDown2{
+  right: 0%;
+  top:60%;
+  color: red;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #0066cc;
+    color: white;
+    text-align: center;
+}
+
+@media only screen and (max-width: 768px){
+  #js-displaymap, #js-displResults, .js-search{
+    width: 100%;
+  }
+
+  #js-displResults{
+    height: 0px;
+  }
+}
+
+/* The animation code */
+@keyframes anim_hangDown_1 {
+  0%   {color:red; left:10%; top:0%;}
+  100%  {color:yellow; left:10%; top:60%;}
+  
+}
+
+.handDown1{
+  left: 10%;
+  top:0%;
+  color: yellow;
+  animation-name: anim_hangDown_1;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+}
+
+
+/* The animation code */
+@keyframes anim_hangDown_2 {
+   0%   {color:yellow; right:10%; top:0%;}
+  100%  {color:red; right:10%; top:60%;}
+   
+}
+.handDown2{
+  right: 10%;
+  top:0%;
+  color: red;
+  animation-name: anim_hangDown_2;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+}
+
+.handDown1:hover, .handDown2:hover{
+  animation-play-state: paused;
+}
    
