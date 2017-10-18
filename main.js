@@ -92,8 +92,8 @@ function setMaps(data, location){
     let desc = "";
     if(data[i].image && data[i].image.medium){
       if(data[i].image.medium.url){
-        imgUrl = data[i].image.medium.url;
-        //console.log(data[i].image.medium.url);
+        imgUrl = (data[i].image.medium.url).replace('http', 'https');
+        console.log(imgUrl);
       }
     }
 
@@ -111,13 +111,14 @@ function setMaps(data, location){
     });
 
     let date = new Date(data[i].start_time);
+   
     marker[i].info = new google.maps.InfoWindow({
       content: `
       <div class="markerInfo">
         <img src= ${imgUrl} class="img-responsive img-thumbnail imageInfo">
-        <h4> <a href="${data[i].url}" target="myIframe" class="js-page_venue"> ${data[i].title} </a></h4> 
+        <h4> <a href="${(data[i].url).replace('http', 'https')}" target="myIframe" class="js-page_venue"> ${data[i].title} </a></h4> 
         <h6>When: ${date.toLocaleDateString() } At: ${date.toLocaleTimeString() }</h6>
-        <h6>Where:<a href="${data[i].venue_url}" target="myIframe"  class="js-page_venue" > ${data[i].venue_name}</a></h6>
+        <h6>Where:<a href="${(data[i].venue_url).replace('http', 'https')}" target="myIframe"  class="js-page_venue" > ${data[i].venue_name}</a></h6>
         <h6>Address: ${data[i].venue_address} ${data[i].city_name}, ${data[i].region_abbr} ${data[i].postal_code}</h6>
         <p>${desc}</p>
       </div> `
