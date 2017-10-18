@@ -134,7 +134,7 @@ function setMaps(data, location){
 }
 
 function updateMarker(index){
-  console.log('index '+ index);
+  //console.log('index '+ index);
   for(let i=0; i < marker.length; i++){
     marker[i].setAnimation(null);
   }
@@ -152,7 +152,7 @@ $(function(){
 
     let searchTerm = $("#searchEvent").val();
     let location = $("#location").val();
-    console.log(searchTerm+ "  "+location);
+    //console.log(searchTerm+ "  "+location);
     show_alert(searchTerm, location);
    
    });
