@@ -6,60 +6,83 @@
   <title>eventLocalizer</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
   <script type="text/javascript" src="https://api.eventful.com/js/api"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDD9_2goRhjyhozdS3mHcQvsXVYit8cix0&" async defer></script>
   <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 
 <body>
-<div class="container">
   <div class=" jumbotron">
-    <h3>Search for event near You </h3>
+    <div class="eventGit">
+      <img src="events.gif" width="100" height="80" >
+    </div>
+    <h2>Search for events near your favorite location</h2>
     <form class="form-inline">
       <div class="form-group">
-        <label for="location" class="sr-only">location</label>
+        <label for="location" class="sr-only"></label>
         <input type="text" class="form-control" id="location" placeholder="Atlanta" required>
       </div>
       <div class="form-group">
-        <label for="searchEvent" class="sr-only">searchEvent</label>
+        <label for="searchEvent" class="sr-only"></label>
         <input type="text" placeholder="Concerts" class="form-control " id="searchEvent" required />
       </div>
-      <button type="submit" class="btn btn-default js-search glyphicon glyphicon-search"></button>
+      <button type="submit" class="btn btn-primary js-search glyphicon glyphicon-search"></button>
     </form>
+    <button type="button" class="resetZoom btn btn-primary " >Re-center</button>
   </div>
-  
+
+  <div class="container">
     <div class="main">
-      <div >
-        <div class="col-sx-12 col-sm-4 " id="js-displResults">List of events</div>
-        <div class="col-sx-12 col-sm-8" id="js-displaymap"></div>
+
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">No Data Found</h4>
+            </div>
+            <div class="modal-body">
+              <p>Please, check again your location name and/or the events categeries you are intersting in; Check also your spelling. Sample of events you can search for are:<br>
+              "Concerts", "Festivals", "comedy", "Familly", "nightlife", "performance arts", "conferances", "education", "film", "food", "museums", "technology" etc.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          
+        </div>
       </div>
+      <div class="col-sx-12 col-sm-4" id="js-displResults">List of events</div>
+      <div  class="col-sx-12 col-sm-8" id="js-displaymap"></div>
+      
+      <!--
+        <div  id="js_Iframe">
+          <iframe src="https://atlanta.eventful.com/events&scheme=https" name="myIframe" height="900" width="100%">
+            Your browser doesn't support iframe!
+          </iframe>
+        </div>
+         <div class="hidenheader">
+            <h2> Find more details about your event below</h2>
+            <div class="handDown1"><h1><span class="glyphicon glyphicon-hand-down " ></span> </h1></div>
+            <div class="handDown2"><h1><span class="glyphicon glyphicon-hand-down " ></span> </h1></div>
+         </div>
+       </div> -->
 
-      <div  id="js_Iframe">
-        <iframe src="https://atlanta.eventful.com/events&scheme=https" name="myIframe" height="900" width="100%">
-          Your browser doesn't support iframe!
-        </iframe>
-      </div>
-       <div class="hidenheader">
-          <h2> Find more details about your event below</h2>
-          <div class="handDown1"><h1><span class="glyphicon glyphicon-hand-down " ></span> </h1></div>
-          <div class="handDown2"><h1><span class="glyphicon glyphicon-hand-down " ></span> </h1></div>
-       </div>
     </div>
-
-
-    </div>
-
     <div class="footer">
-      <p>Copyright @2017 by Samuel Raoul</p>
+      <h5>Copyright @2017 by Samuel Raoul</h5>
     </div>
+    
   </div>
 
 
 
 
 
-  <script type="text/javascript" src="main.js"></script>
+<script type="text/javascript" src="main.js"></script>
 </body>
 
 </html>

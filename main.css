@@ -1,22 +1,42 @@
 body{
 
   background-color:#eee
+  height:100%;
 }
+
 .jumbotron{
+  position: relative;
   text-align: center;
+  color: blue;
   margin-bottom: 0px;
   padding-top: 10px;
   padding-bottom: 20px;
   background-color: #0066cc;
-  color: white;
-  
+  background-image: url("jumbotron4.png");
+  height: 20%;
+}
+
+.resetZoom{
+  position: relative;
+  right: 5%;
+  top: 30px;
+  float: right;
+}
+
+.js-search{
+  width: 100px;
+}
+.eventGit{
+  position: absolute;
+  left: 20%;
 }
 
 #js-displaymap{
   margin-right: auto;
   margin-left: auto;
-  height: 550px;
-  width: 80%;
+  height: 400px;
+  width: 75%;
+  background-color: #b3f0ff;
   border: solid 4px white;
 }
 
@@ -24,12 +44,15 @@ body{
   margin-right: auto;
   margin-left: auto;
   width: 20%;
-  height: 550px;
+  height: 400px;
   overflow: auto;
+  background-color:#b5d874 ;
   border:4px solid white;
 
 }
-
+.container{
+  width: 90%;
+}
 .imageInfo{
   float: left;
 }
@@ -42,6 +65,58 @@ body{
 }
 
 
+.footer {
+
+    position: fixed;
+    bottom: 1px;
+    left:0px;
+    width: 100%;
+    background-image: url("jumbotron4.png");
+    color: blue;
+    text-align: center;
+    height: 40px;
+}
+
+@media only screen and (max-width: 768px){
+  #js-displaymap, #js-displResults, .js-search{
+    width: 100%;
+  }
+
+  #js-displResults{
+    height: 0px;
+  }
+  .container{
+    width: 100%;
+  }
+}
+
+@media only screen and (min-height: 600px){
+  #js-displaymap, #js-displResults{
+    height: 500px;
+  }
+
+}
+@media only screen and (min-height: 800px){
+  #js-displaymap, #js-displResults{
+    height: 700px;
+  }
+
+}
+@media only screen and (min-height: 900px){
+  #js-displaymap, #js-displResults{
+    height: 800px;
+  }
+
+}
+
+/* The animation code */
+@keyframes anim_hangDown_1 {
+  0%   {color:red; left:10%; top:0%;}
+  100%  {color:yellow; left:10%; top:60%;}
+  
+}
+
+/*
 .hidenheader{
   border:1px solid black;
   background-color: #0066cc;
@@ -69,32 +144,6 @@ body{
   color: red;
 }
 
-.footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #0066cc;
-    color: white;
-    text-align: center;
-}
-
-@media only screen and (max-width: 768px){
-  #js-displaymap, #js-displResults, .js-search{
-    width: 100%;
-  }
-
-  #js-displResults{
-    height: 0px;
-  }
-}
-
-/* The animation code */
-@keyframes anim_hangDown_1 {
-  0%   {color:red; left:10%; top:0%;}
-  100%  {color:yellow; left:10%; top:60%;}
-  
-}
 
 .handDown1{
   left: 10%;
@@ -108,14 +157,16 @@ body{
   animation-direction: alternate;
   animation-fill-mode: forwards;
 }
-
+*/
 
 /* The animation code */
+/*
 @keyframes anim_hangDown_2 {
    0%   {color:yellow; right:10%; top:0%;}
   100%  {color:red; right:10%; top:60%;}
    
 }
+
 .handDown2{
   right: 10%;
   top:0%;
@@ -133,3 +184,4 @@ body{
   animation-play-state: paused;
 }
    
+*/

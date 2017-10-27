@@ -24,16 +24,24 @@ function show_alert(term,location)
 
    EVDB.API.call(ENDPOINT, oArgs, function(oData) {
       // Note: this relies on the custom toString() methods below
-      var data = oData.events.event;
-      console.log(data);
-      if(data.length>0){
-        displayResults(data, term, location);
-        setMaps(data, location);
+      console.log(oData.events)
+      if(oData.events != null){
+        var data = oData.events.event;
+        console.log(data);
+        if(data.length>0){
+          displayResults(data, term, location);
+          setMaps(data, location);
+          $(".resetZoom").show("show");
+        }
+        else{
+          //alert("No results found!, Revise your search and resubmit it!")
+          $("#myModal").modal();
+          $(".resetZoom").hide();
+        }
+      }else{
+        $("#myModal").modal();
+        $(".resetZoom").hide();
       }
-      else{
-        alert("No results found!, Revise your search and resubmit it!")
-      }
-      
 
     });
 
@@ -54,6 +62,7 @@ function initMap() {
    map = new google.maps.Map(document.getElementById("js-displaymap"), {
     center:{lat: 40.7608, lng: -111.8910},
     zoom:4,
+    MapTypeId: google.maps.MapTypeId.TERRAIN
   });
 
   let events =["Concerts", "Festivals", "comedy", "Familly", "nightlife", "performance arts", "conferances", "education", "film", "food", "museums", "technology" ];
@@ -64,16 +73,13 @@ function initMap() {
     //console.log('index '+ i% events.length)
   
   }, 2000);
+  $(".resetZoom").hide();
 }
 
 
 function setMaps(data, location){
   let geocoder = new google.maps.Geocoder(); 
-  map = new google.maps.Map(document.getElementById("js-displaymap"), {
-    center:{lat: 40.7608, lng: -111.8910},
-    zoom:4,
-  });
-
+  
   geocoder.geocode({
     'address': location
   }, function(results, status) {
@@ -138,11 +144,18 @@ function updateMarker(index){
   for(let i=0; i < marker.length; i++){
     marker[i].setAnimation(null);
   }
+  map.setCenter(marker[index].getPosition());
+  map.setZoom(17);
   marker[index].setAnimation(google.maps.Animation.BOUNCE);
   marker[index].setMap(map);
 
 }
 
+function resetZoomEvents(){
+  $(".resetZoom").click(function(){
+    map.setZoom(10);
+  });
+}
 
 $(function(){
    $("form").submit(function(event){
@@ -154,11 +167,12 @@ $(function(){
     let location = $("#location").val();
     //console.log(searchTerm+ "  "+location);
     show_alert(searchTerm, location);
+
    
    });
    //initial display maps
   initMap();
-  
+  resetZoomEvents();
 
   $('#js-displResults').on('click', '.js-data', function(event){
     let = index = $(event.currentTarget).attr('data-id');
