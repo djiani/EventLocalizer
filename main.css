@@ -78,16 +78,37 @@ body{
 }
 
 @media only screen and (max-width: 768px){
-  #js-displaymap, #js-displResults, .js-search{
-    width: 100%;
+  #location, #searchEvent{
+    width: 70%;
+  }
+  .js-search{
+    display: block;
+    width: 70%;
   }
 
+  .jomboron{
+
+  }
+  #js-displaymap{
+    width: 100%;
+  }
   #js-displResults{
-    height: 0px;
+    height: -10px;
   }
   .container{
     width: 100%;
   }
+
+  .eventGit{
+  left: -50%;
+  }
+
+  .resetZoom{
+    right: 2%;
+    top: -10px;
+  
+  }
+
 }
 
 @media only screen and (min-height: 600px){
