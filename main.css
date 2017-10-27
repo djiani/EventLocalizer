@@ -19,7 +19,7 @@ body{
 .resetZoom{
   position: relative;
   right: 22%;
-  top: -40px;
+  top: -36px;
   float: right;
 }
 
@@ -103,7 +103,7 @@ body{
 
   .resetZoom{
     right: 2%;
-    top: -50px;
+    top: -36px;
   
   }
 
