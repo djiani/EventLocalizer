@@ -5,13 +5,14 @@ EventLocalizer
 
 Description of the web-app
 ---------------------------
-
-EventLocalizer is a web-app based on eventful api and google maps api. it helps user search for event at any location and visually thier displacement in a map. The max number  per search is limited to 30 and they are listed by order of popularity! Ckicking on any event in the list shown you it actual location on the map. Clicking at any event in the map open a dialog box with some info about the event. clicking on any link(if there is one) on the open dialog take of the actual eventful website, which has been embeded to this apps, which offers you more details infos about that event. 
+EventLocaliser can been seen at Eventful 1.0.0. It is based on eventful api and google maps api. It purpose is to help user get in touch with your community and surrounding by searching for events that it is happening around his favorite location. The events are listed by order of popularity. A click to an event in the list reveal the actuals position of that event in the map. A click to an event in map displays more details about that events.
 
 Technology
 -----------
-This web-app is built using Front-end Technology(Html5/CSS/Bootstap/JQuery)
+- This web-app is built using Front-end Technology(Html5/CSS/Bootstap/JQuery/Ajax)
 - The app is fully responsible and suitable adapted for mobile, tablets, desktop viewports.
+
+
 
 Contributors
 ------------
