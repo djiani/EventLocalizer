@@ -5,7 +5,7 @@ EventLocalizer
 
 Description
 ---------------------------
-Are You boring? Do you want to hangout but don't know where to go? Did you just move to a new community? Are you curious about what is going on around you or around your favor location? Are you searching for specify event? If yes, EventLocalizer is a great app for you. This web apps allows users to find all current or incomming events in your preferable location. 
+Are You boring? Do you want to hangout but don't know where to go? Did you just move to a new community? Are you curious about what is going on around you or around your favor location? Are you looking for specific event? If yes, EventLocalizer is a great app for you. This web apps allows users to find all current or incomming events in your preferable location. 
 
 Technology
 -----------
