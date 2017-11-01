@@ -3,6 +3,8 @@ const ENDPOINT = "/events/search"
 let map = "";
 let marker= [];
 let timerInterval
+let windowHeight = 0;
+let defaultLocation ="";
 
 function show_alert(term,location)
 {
@@ -29,26 +31,49 @@ function show_alert(term,location)
         var data = oData.events.event;
         console.log(data);
         if(data.length>0){
+          $(".resetZoom").show("show");
+          $("#js-displResults").show();
+          console.log("width= "+$(window).width());
+          if($(window).width()<768){
+
+            console.log("set js-displaymap with to 100%")
+            $("#js-displaymap").css({"width":"100%"});
+          }else{
+            console.log("set js-displaymap with to 70%")
+            $("#js-displaymap").css({"width":"70%"});
+          }
           displayResults(data, term, location);
           setMaps(data, location);
-          $(".resetZoom").show("show");
         }
         else{
           //alert("No results found!, Revise your search and resubmit it!")
           $("#myModal").modal();
           $(".resetZoom").hide();
+          $("#js-displResults").hide();
+          $("#js-displaymap").css({"width":"100%"});
         }
       }else{
         $("#myModal").modal();
         $(".resetZoom").hide();
+        $("#js-displResults").hide();
+        $("#js-displaymap").css({"width":"100%"});
       }
-
+      $("#WaitForEvent").modal("hide");
+      centerMap();
     });
 
 }
 
+function centerMap(){
+  if (defaultLocation != ""){
+    map.setCenter(defaultLocation.geometry.location);
+    map.setZoom(10);
+  }
+      
+
+}
 function displayResults(data, searchTerm, location){
-  let html =`<h4>List of ${searchTerm} found near ${location}:</h4>
+  let html =`<h5>List of ${searchTerm} found near ${location}:</h5>
   <ul>`;
   for(let i=0; i< data.length; i++){
     html += `<li class="js-data" data-id=${i}><a href='#'>${data[i].title}</a></li><br>`
@@ -64,8 +89,7 @@ function initMap() {
     zoom:4,
     MapTypeId: google.maps.MapTypeId.TERRAIN
   });
-
-  let events =["Concerts", "Festivals", "comedy", "Familly", "nightlife", "performance arts", "conferances", "education", "film", "food", "museums", "technology" ];
+  let events =["Concerts", "Festivals", "Comedy", "Family", "Nightlife", "Performance arts", "Conferences", "Education", "Film", "Food", "Museums", "Technology" ];
   let i = 0;
   timerInterval = setInterval(function(){
     i++;
@@ -74,8 +98,32 @@ function initMap() {
   
   }, 2000);
   $(".resetZoom").hide();
+  $("#js-displResults").hide();
+  $("#js-displaymap").css({"width":"100%"});
+  windowHeight = $(window).height(); 
+  $("#js-displaymap").css({"height": (windowHeight-170)+"px"});
+  $("#js-displResults").css({"height": (windowHeight-170)+"px"});
 }
 
+function trackWindowHeight(){
+  $(window).resize(function(){
+   if(windowHeight !== $(window).height()){
+    console.log(windowHeight);
+    $("#js-displaymap").css({"height": (windowHeight-165)+"px"});
+    $("#js-displResults").css({"height": (windowHeight-165)+"px"});
+
+    }
+    console.log("width= "+$(window).width());
+    if($(window).width()<768){
+      console.log("set js-displaymap with to 100%");
+      $("#js-displaymap").css({"width":"100%"});
+    }else{
+      console.log("set js-displaymap with to 70%");
+      $("#js-displaymap").css({"width":"70%"});
+    }
+  centerMap();
+  });
+}
 
 function setMaps(data, location){
   let geocoder = new google.maps.Geocoder(); 
@@ -84,6 +132,7 @@ function setMaps(data, location){
     'address': location
   }, function(results, status) {
     if(status == google.maps.GeocoderStatus.OK) {
+      defaultLocation= results[0];
       map.setCenter(results[0].geometry.location);
       map.setZoom(10);
     }
@@ -153,25 +202,29 @@ function updateMarker(index){
 
 function resetZoomEvents(){
   $(".resetZoom").click(function(){
+    centerMap();
     map.setZoom(10);
   });
 }
 
 $(function(){
+ 
    $("form").submit(function(event){
     event.preventDefault();
     //clear timer interval
     clearInterval(timerInterval);
-
+    $("#WaitForEvent").modal("show");
     let searchTerm = $("#searchEvent").val();
     let location = $("#location").val();
     //console.log(searchTerm+ "  "+location);
     show_alert(searchTerm, location);
 
+
    
    });
    //initial display maps
   initMap();
+  trackWindowHeight();
   resetZoomEvents();
 
   $('#js-displResults').on('click', '.js-data', function(event){
@@ -179,6 +232,8 @@ $(function(){
     updateMarker(index);
 
   })
+
+  
 
 });
 

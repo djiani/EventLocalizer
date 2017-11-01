@@ -3,9 +3,9 @@ EventLocalizer
 
 ![Picture](eventloc_screenshot.png)
 
-Description of the web-app
+Description
 ---------------------------
-EventLocaliser can been seen at Eventful 1.0.0. It is based on eventful api and google maps api. Its purpose is to help users get in touch with their community and surrounding by searching for events that they maybe be insteresting at. Events are listed by order of popularity. A click to an event in the list reveals the actuals position of that event in the map. A click to an event in map displays more details about that events.
+Are You boring? Do you want to hangout but don't know where to go? Did you just move to a new community? Are you curious about what is going on around you or around your favor location? Are you searching for specify event? If yes, EventLocalizer is a great app for you. This web apps allows users to find all current or incomming events in your preferable location. 
 
 Technology
 -----------
