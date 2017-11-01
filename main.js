@@ -2,7 +2,8 @@
 const ENDPOINT = "/events/search"
 let map = "";
 let marker= [];
-let timerInterval
+let timerInterval;
+let modal_timerInter;
 let windowHeight = 0;
 let defaultLocation ="";
 
@@ -17,7 +18,7 @@ function show_alert(term,location)
 
       where: location, 
 
-      page_size: 30,
+      page_size: 50,
 
       sort_order: "popularity",
 
@@ -59,6 +60,7 @@ function show_alert(term,location)
         $("#js-displaymap").css({"width":"100%"});
       }
       $("#WaitForEvent").modal("hide");
+      clearInterval(modal_timerInter);
       centerMap();
     });
 
@@ -101,16 +103,16 @@ function initMap() {
   $("#js-displResults").hide();
   $("#js-displaymap").css({"width":"100%"});
   windowHeight = $(window).height(); 
-  $("#js-displaymap").css({"height": (windowHeight-170)+"px"});
-  $("#js-displResults").css({"height": (windowHeight-170)+"px"});
+  $("#js-displaymap").css({"height": (windowHeight-180)+"px"});
+  $("#js-displResults").css({"height": (windowHeight-180)+"px"});
 }
 
 function trackWindowHeight(){
   $(window).resize(function(){
    if(windowHeight !== $(window).height()){
     //console.log(windowHeight);
-    $("#js-displaymap").css({"height": (windowHeight-165)+"px"});
-    $("#js-displResults").css({"height": (windowHeight-165)+"px"});
+    $("#js-displaymap").css({"height": (windowHeight-180)+"px"});
+    $("#js-displResults").css({"height": (windowHeight-180)+"px"});
 
     }
     //console.log("width= "+$(window).width());
@@ -207,6 +209,16 @@ function resetZoomEvents(){
   });
 }
 
+function animate_Modal(){
+  let events =[".", "..", "..."];
+  let i = 0;
+  modal_timerInter = setInterval(function(){
+    i++;
+    console.log(i)
+    $('.loading_data').html(events[i% events.length]);
+    }, 500);
+}
+
 $(function(){
  
    $("form").submit(function(event){
@@ -214,6 +226,7 @@ $(function(){
     //clear timer interval
     clearInterval(timerInterval);
     $("#WaitForEvent").modal("show");
+    animate_Modal(); 
     let searchTerm = $("#searchEvent").val();
     let location = $("#location").val();
     //console.log(searchTerm+ "  "+location);
@@ -226,7 +239,6 @@ $(function(){
   initMap();
   trackWindowHeight();
   resetZoomEvents();
-
   $('#js-displResults').on('click', '.js-data', function(event){
     let = index = $(event.currentTarget).attr('data-id');
     updateMarker(index);
