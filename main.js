@@ -108,17 +108,17 @@ function initMap() {
 function trackWindowHeight(){
   $(window).resize(function(){
    if(windowHeight !== $(window).height()){
-    console.log(windowHeight);
+    //console.log(windowHeight);
     $("#js-displaymap").css({"height": (windowHeight-165)+"px"});
     $("#js-displResults").css({"height": (windowHeight-165)+"px"});
 
     }
-    console.log("width= "+$(window).width());
+    //console.log("width= "+$(window).width());
     if($(window).width()<768){
       console.log("set js-displaymap with to 100%");
       $("#js-displaymap").css({"width":"100%"});
     }else{
-      console.log("set js-displaymap with to 70%");
+      //console.log("set js-displaymap with to 70%");
       $("#js-displaymap").css({"width":"70%"});
     }
   centerMap();
@@ -173,7 +173,7 @@ function setMaps(data, location){
         <img src= ${imgUrl} class="img-responsive img-thumbnail imageInfo">
         <h4> <a href="${(data[i].url).replace('http', 'https')}" target="myIframe" class="js-page_venue"> ${data[i].title} </a></h4> 
         <h6>When: ${date.toLocaleDateString() } At: ${date.toLocaleTimeString() }</h6>
-        <h6>Where:<a href="${(data[i].venue_url).replace('http', 'https')}" target="myIframe"  class="js-page_venue" > ${data[i].venue_name}</a></h6>
+        <h6>Where:<a href="${(data[i].venue_url).replace('http', 'https')}"  class="js-page_venue" > ${data[i].venue_name}</a></h6>
         <h6>Address: ${data[i].venue_address} ${data[i].city_name}, ${data[i].region_abbr} ${data[i].postal_code}</h6>
         <p>${desc}</p>
       </div> `
