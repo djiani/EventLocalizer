@@ -68,7 +68,8 @@ function show_alert(term,location)
 
 function centerMap(){
   if (defaultLocation != ""){
-    map.setCenter(defaultLocation.geometry.location);
+    console.log(defaultLocation);
+    map.setCenter({lat: parseFloat(defaultLocation.latitude), lng: parseFloat(defaultLocation.longitude)});
     map.setZoom(10);
   }
       
@@ -88,7 +89,7 @@ function displayResults(data, searchTerm, location){
 function initMap() {
    map = new google.maps.Map(document.getElementById("js-displaymap"), {
     center:{lat: 40.7608, lng: -111.8910},
-    zoom:4,
+    zoom:5,
     MapTypeId: google.maps.MapTypeId.TERRAIN
   });
   let events =["Concerts", "Festivals", "Comedy", "Family", "Nightlife", "Performance arts", "Conferences", "Education", "Film", "Food", "Museums", "Technology" ];
@@ -134,8 +135,7 @@ function setMaps(data, location){
     'address': location
   }, function(results, status) {
     if(status == google.maps.GeocoderStatus.OK) {
-      defaultLocation= results[0];
-      map.setCenter(results[0].geometry.location);
+      //map.setCenter(results[0].geometry.location);
       map.setZoom(10);
     }
     else {  //location is not found
@@ -143,6 +143,7 @@ function setMaps(data, location){
     }
   });
 
+defaultLocation = data[0];
   
   for(var i=0; i< data.length; i++){
     let imgUrl = "";
